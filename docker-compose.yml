@@ -1,0 +1,34 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    ports:
+      - "8005:8005"
+    env_file:
+      - .env
+    volumes:
+      - ./backend:/app/backend
+      - chroma_data:/app/backend/chroma_store
+      - sqlite_data:/app/backend
+    working_dir: /app/backend
+    command: uvicorn main:app --host 0.0.0.0 --port 8005 --reload
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+    environment:
+      - VITE_API_PROXY=http://backend:8005
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    command: npm run dev -- --host 0.0.0.0
+
+volumes:
+  chroma_data:
+  sqlite_data:

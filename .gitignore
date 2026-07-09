@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+
+# Environment
+.env
+venv/
+.venv/
+env/
+
+# Database (generated at runtime)
+backend/railway.db
+backend/chroma_store/
+backend/qdrant_store/
+
+# HuggingFace model cache
+*.bin
+*.safetensors
+
+# Node / Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db

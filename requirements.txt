@@ -1,0 +1,40 @@
+# ── Agentic Framework ────────────────────────────────────────────────────────
+langchain
+langchain-core
+langchain-community
+langchain-groq
+groq
+
+# ── Web Framework ────────────────────────────────────────────────────────────
+fastapi
+uvicorn[standard]
+python-multipart
+
+# ── Database ─────────────────────────────────────────────────────────────────
+SQLAlchemy
+
+# ── Environment ──────────────────────────────────────────────────────────────
+python-dotenv
+
+# ── AI / RAG ─────────────────────────────────────────────────────────────────
+sentence-transformers
+chromadb
+flashrank
+
+# ── Validation ───────────────────────────────────────────────────────────────
+pydantic
+
+# ── HTTP / Networking ────────────────────────────────────────────────────────
+httpx
+requests
+websockets
+
+# ── PDF Support ──────────────────────────────────────────────────────────────
+pypdf
+
+# ── Live NTES Client (PNR Status) ────────────────────────────────────────────
+ntes-client
+
+# ── NTES Client Dependencies ─────────────────────────────────────────────────
+Pillow
+pycryptodome
