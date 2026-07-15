@@ -23,7 +23,11 @@ def query_test(query: str = "What is the refund for a Tatkal ticket?"):
 
     client = chromadb.PersistentClient(path=CHROMA_PATH)
     collection = client.get_collection(name=FAQ_COLLECTION)
-    results = collection.query(query_texts=[query], n_results=10)
+    results = collection.query(
+        query_texts=[query],
+        n_results=10,
+        include=["documents", "metadatas", "distances"],
+    )
 
     documents = results.get("documents", [[]])[0]
     metadatas = results.get("metadatas", [[]])[0]
@@ -31,10 +35,11 @@ def query_test(query: str = "What is the refund for a Tatkal ticket?"):
 
     candidates = [
         {
-            "text": doc,
-            "source": meta.get("source", "railway_faq.txt") if isinstance(meta, dict) else "railway_faq.txt",
-            "chunk_index": meta.get("chunk_index", 0) if isinstance(meta, dict) else 0,
-            "score": 1.0 - float(dist) if dist is not None else 0.0,
+            "text":         doc,
+            "source":       meta.get("source",      "unknown") if isinstance(meta, dict) else "unknown",
+            "category":     meta.get("category",    "general") if isinstance(meta, dict) else "general",
+            "chunk_index":  meta.get("chunk_index",  0)        if isinstance(meta, dict) else 0,
+            "chroma_score": round(1.0 - (float(dist) / 2.0), 4) if dist is not None else 0.0,
         }
         for doc, meta, dist in zip(documents, metadatas, distances)
     ]
@@ -48,9 +53,14 @@ def query_test(query: str = "What is the refund for a Tatkal ticket?"):
     reranked = ranker.rerank(request)
 
     print("\n[RAG] Top 3 results after reranking:")
+    encoding = sys.stdout.encoding or 'utf-8'
     for i, r in enumerate(reranked[:3]):
-        print(f"\n  [{i+1}] Score: {r['score']:.4f}")
-        print(f"       {r['text'][:200]}...")
+        # Merge metadata back for display
+        meta = next((c for c in candidates if c["text"] == r["text"]), {})
+        print(f"\n  [{i+1}] Rerank: {r['score']:.4f}  |  Chroma: {meta.get('chroma_score', '?')}  |  Category: {meta.get('category', '?')}")
+        # Safe encoding/decoding to avoid print crash on Windows console
+        safe_text = r['text'][:200].encode(encoding, errors='replace').decode(encoding)
+        print(f"       {safe_text}...")
 
 
 if __name__ == "__main__":

@@ -1,19 +1,24 @@
 import os
 import json
-import chromadb
-from flashrank import Ranker, RerankRequest
 from langchain_groq import ChatGroq
-from langchain_core.messages import SystemMessage, HumanMessage
+
+from langchain_core.messages import (
+    SystemMessage,
+    HumanMessage,
+)
 from dotenv import load_dotenv
+from rag.retriever import search_faq
+from rag.query_rewriter import rewrite_query
+from rag.constants import CATEGORY_KEYWORDS
 
 import sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 load_dotenv()
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-CHROMA_PATH = os.path.join(BASE_DIR, "chroma_store")
-COLLECTION = "railway_faq"
+# ============================================================
+# LLM
+# ============================================================
 
 def _get_llm():
     api_key = os.environ.get("GROQ_API_KEY")
@@ -25,38 +30,9 @@ def _get_llm():
         temperature=0.2,
     )
 
-def search_faq(query: str, top_k: int = 5) -> list[dict]:
-    if not os.path.exists(CHROMA_PATH):
-        return []
-
-    client = chromadb.PersistentClient(path=CHROMA_PATH)
-    try:
-        collection = client.get_collection(name=COLLECTION)
-    except Exception:
-        return []
-
-    results = collection.query(query_texts=[query], n_results=15)
-    documents = results.get("documents", [[]])[0]
-    
-    candidates = [{"text": doc} for doc in documents]
-    if not candidates:
-        return []
-
-    ranker = Ranker(model_name="ms-marco-MiniLM-L-12-v2", cache_dir=os.path.join(BASE_DIR, ".flashrank_cache"))
-    request = RerankRequest(query=query, passages=candidates)
-    reranked = ranker.rerank(request)
-
-    cleaned_results = []
-    for doc in reranked[:top_k]:
-        cleaned_doc = {}
-        for k, v in doc.items():
-            if hasattr(v, "item"):
-                cleaned_doc[k] = v.item()
-            else:
-                cleaned_doc[k] = v
-        cleaned_results.append(cleaned_doc)
-
-    return cleaned_results
+# ============================================================
+# SYSTEM PROMPT
+# ============================================================
 
 RAG_SYSTEM = """
 You are AIrail, an Indian Railways and IRCTC policy assistant.
@@ -93,17 +69,77 @@ Before answering, identify all relevant rule sections that may apply. Some quest
 - Never leave the user without a next step if the documents are insufficient
 """
 
+# ── Phase 3 helper ───────────────────────────────────────────────────────────
+
+def _detect_query_category(query: str) -> str | None:
+    """
+    Keyword-match the query against CATEGORY_KEYWORDS.
+    Returns a category label (e.g. 'refund') or None if unclear.
+    None tells the retriever to search the full collection (safe default).
+    """
+    text = query.lower()
+    for category, keywords in CATEGORY_KEYWORDS.items():
+        if any(kw in text for kw in keywords):
+            return category
+    return None
+
+
+# ============================================================
+# MAIN RAG AGENT
+# ============================================================
+
 def run(user_message: str, history: list[dict], trace_steps: list[str]) -> dict:
     llm = _get_llm()
-    trace_steps.append(f"[RAG] Searching FAQ for: {user_message}")
-    
-    faq_results = search_faq(user_message)
+
+    # ── Phase 2: History-aware query rewriting ────────────────────────────
+    # Resolve pronouns / implicit references before hitting the vector store.
+    # Falls back silently to the original message on any failure.
+    retrieval_query, was_rewritten = rewrite_query(user_message, history)
+
+    if was_rewritten:
+        trace_steps.append(
+            f"[RAG] Query rewritten for retrieval:\n"
+            f"  Original : {user_message}\n"
+            f"  Rewritten: {retrieval_query}"
+        )
+    else:
+        trace_steps.append(f"[RAG] Query is self-contained — no rewrite needed.")
+
+    trace_steps.append(f"[RAG] Searching FAQ for: {retrieval_query}")
+    # ─────────────────────────────────────────────────────────────────────
+
+    # ── Phase 3: Metadata category filter ────────────────────────────────
+    # Narrow vector search to the most relevant category when the query
+    # is clearly about one topic. Falls back to full-collection search
+    # when the category cannot be determined.
+    detected_category = _detect_query_category(retrieval_query)
+    metadata_filter = {"category": detected_category} if detected_category else None
+
+    if detected_category:
+        trace_steps.append(f"[RAG] Category detected: '{detected_category}' — applying metadata filter.")
+    else:
+        trace_steps.append("[RAG] No specific category detected — searching full knowledge base.")
+    # ─────────────────────────────────────────────────────────────────────
+
+    faq_results = search_faq(retrieval_query, metadata_filter=metadata_filter)
+
+    # ── Phase 7: Similarity threshold ────────────────────────────────────
+    # If no results passed the threshold, try again without the category
+    # filter (the query category detector may have been too specific).
+    if not faq_results and metadata_filter:
+        trace_steps.append(
+            f"[RAG] No results above threshold in '{detected_category}' — "
+            "retrying without category filter."
+        )
+        faq_results = search_faq(retrieval_query)
+    # ─────────────────────────────────────────────────────────────────────
+
     if faq_results:
         context_str = "\n\n".join([f"Document {i+1}:\n{doc.get('text', '')}" for i, doc in enumerate(faq_results)])
         trace_steps.append(f"[RAG] Retrieved {len(faq_results)} relevant chunks.")
     else:
         context_str = "No relevant FAQ documents found."
-        trace_steps.append("[RAG] No FAQ documents found.")
+        trace_steps.append("[RAG] No chunks passed the similarity threshold.")
 
     try:
         if llm is None:

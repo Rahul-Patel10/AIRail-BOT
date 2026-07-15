@@ -1,0 +1,146 @@
+IRCTC RAILWAY FAQ — POLICIES & RULES
+======================================
+Source: Official IRCTC / Indian Railways Guidelines
+Last Updated: 2026
+
+---
+SECTION 1: TICKET BOOKING RULES
+---
+
+Q: How many tickets can I book per user account per month?
+A: An individual IRCTC user can book a maximum of 6 tickets per month through the online portal. If the user has completed Aadhaar-based verification, this limit is increased to 12 tickets per month.
+
+Q: How far in advance can I book a train ticket?
+A: Tickets can be booked up to 120 days in advance (excluding the date of journey) through the IRCTC website or app. This is called the Advance Reservation Period (ARP).
+
+Q: What is Tatkal booking and when does it open?
+A: Tatkal is a premium booking scheme for last-minute travellers. Tatkal quota opens at 10:00 AM for AC classes (1A, 2A, 3A, CC) and at 11:00 AM for non-AC classes (SL) — both one day before the date of journey.
+
+Q: What is the Tatkal surcharge?
+A: Tatkal surcharge is charged in addition to the base fare. For non-AC classes (Sleeper), it is 10% of the base fare (minimum Rs. 10, maximum Rs. 15). For AC classes, it is 30% of the base fare (minimum Rs. 300, maximum Rs. 400 for 3A; minimum Rs. 400, maximum Rs. 500 for 2A).
+
+Q: Can I book tickets for senior citizens at a discounted fare?
+A: Yes. Senior citizens get a concession on the base fare. Male passengers aged 60 and above get a 40% concession. Female passengers aged 58 and above get a 50% concession. This discount applies to Sleeper, 3AC, 2AC, 1AC, and CC classes.
+
+Q: What is the child ticket policy?
+A: Children below 5 years of age travel free of cost without a berth. Children aged 5 to 11 years are charged half the adult fare and are entitled to a berth. Children aged 12 and above are charged full adult fare.
+
+Q: What is Premium Tatkal (PT) quota?
+A: Premium Tatkal is a dynamic pricing scheme where fares are higher than regular Tatkal and change based on demand. It typically opens along with regular Tatkal quota. There is no concession for senior citizens, disabled persons, or any other category under Premium Tatkal.
+
+---
+SECTION 2: CANCELLATION & REFUND RULES
+---
+
+Q: What is the refund for a confirmed (CNF) ticket if cancelled?
+A: Refund amount depends on how far in advance the ticket is cancelled:
+- More than 48 hours before departure: Clerkage charge deducted. SL: Rs. 60, 3A: Rs. 180, 2A: Rs. 200, 1A: Rs. 240.
+- Between 12 and 48 hours before departure: 25% of fare deducted.
+- Between 4 and 12 hours before departure: 50% of fare deducted.
+- Less than 4 hours before departure or after departure: No refund.
+
+Q: Can a Tatkal ticket be cancelled for a refund?
+A: For confirmed Tatkal tickets, NO REFUND is provided on cancellation. For waitlisted Tatkal tickets that do not get confirmed, a full refund is provided automatically after chart preparation.
+
+Q: What is the refund policy for RAC (Reservation Against Cancellation) tickets?
+A: If a RAC ticket is cancelled more than 30 minutes before departure, a clerkage charge is deducted and the rest is refunded. If cancelled within 30 minutes before departure, no refund is provided.
+
+Q: How long does a refund take to process?
+A: For tickets booked online through IRCTC, refunds are processed within 3 to 7 business days to the original payment method. For counter-booked tickets, a TDR (Ticket Deposit Receipt) must be filed at the station and may take up to 90 days.
+
+Q: What is a TDR (Ticket Deposit Receipt)?
+A: A TDR is a document filed at the railway station to claim a refund in special circumstances — for example, if a train is cancelled, running more than 3 hours late, or a passenger is sick. It must be filed within the specified time limits.
+
+Q: What is the refund if a train is cancelled by Indian Railways?
+A: If a train is cancelled by Indian Railways, a full refund of the ticket fare is provided automatically without any cancellation charges.
+
+---
+SECTION 3: PNR & RESERVATION STATUS
+---
+
+Q: What does PNR status CNF mean?
+A: CNF means Confirmed. The passenger has a confirmed seat or berth assigned in a specific coach (e.g., B2/45 means Coach B2, Berth 45).
+
+Q: What does WL (Waitlisted) status mean?
+A: WL means the ticket is on the waiting list. For example, WL/12 means the passenger is 12th on the waiting list. After chart preparation, if the waitlist clears, the status moves to CNF. If not, the ticket is automatically cancelled and a refund is processed.
+
+Q: What is RAC (Reservation Against Cancellation)?
+A: RAC passengers are allotted a side-lower berth which is shared with another RAC passenger. If a confirmed passenger cancels, the first RAC passenger gets a full berth. RAC passengers can board the train.
+
+Q: When is the chart prepared for a train?
+A: The final reservation chart is typically prepared 4 hours before the train's scheduled departure. A second chart may be prepared at the station 30 minutes before departure.
+
+Q: What is PQWL, RLWL, and GNWL?
+A: These are different types of waiting lists:
+- GNWL (General Waiting List): Booked from the train's origin station. Has the best chance of confirmation.
+- RLWL (Remote Location Waiting List): Booked between two intermediate stations. Clears only if passengers on that segment cancel.
+- PQWL (Pooled Quota Waiting List): Applies to passengers travelling between certain stations sharing a quota pool. Harder to confirm than GNWL.
+
+---
+SECTION 4: CLASSES & FARE TYPES
+---
+
+Q: What are the different travel classes on Indian trains?
+A: Indian Railways offers the following classes:
+- 1A (First AC): Fully air-conditioned, 4-berth private cabins, highest fare.
+- 2A (Second AC): Air-conditioned, 4-berth semi-open bays, curtains for privacy.
+- 3A (Third AC): Air-conditioned, 8-berth open bays, most popular AC class.
+- SL (Sleeper Class): Non-AC, 8-berth open bays, most affordable reserved class.
+- CC (Chair Car): AC seating for day trains like Shatabdi. No berths.
+- 2S (Second Sitting): Non-AC seating for short-distance trains.
+- GN (General/Unreserved): No reservation required, cheapest option.
+
+Q: What is the difference between superfast and regular express trains?
+A: Superfast trains (e.g., Rajdhani, Shatabdi, Duronto) travel at an average speed above 55 km/h and carry a superfast surcharge. Regular express trains travel slower and are cheaper.
+
+---
+SECTION 5: LUGGAGE & PARCELS
+---
+
+Q: How much free luggage is allowed on Indian trains?
+A: Free luggage allowance by class:
+- 1A: 70 kg
+- 2A: 50 kg
+- 3A: 40 kg
+- SL: 40 kg
+- CC: 40 kg
+- 2S: 35 kg
+Excess luggage can be booked in the luggage van for a fee.
+
+Q: Are there any items prohibited in train compartments?
+A: Yes. Prohibited items include: inflammable materials (kerosene, petrol), explosives, acid, firearms (without valid permit), sharp weapons, and animals (unless in designated compartments).
+
+---
+SECTION 6: SPECIAL TRAINS & QUOTAS
+---
+
+Q: What is the difference between Special Train and Regular Train?
+A: Special trains are run during peak season (festivals, summer holidays) to handle excess demand. They have the same facilities as regular trains but may have slightly higher fares and the routes can vary.
+
+Q: What is the Defence Quota?
+A: A certain number of seats in every train are reserved for defence personnel travelling on duty. This quota is released 24 hours before departure if not utilized.
+
+Q: What is the Ladies Quota?
+A: Lower berths in Sleeper and AC 3-tier coaches are reserved for women passengers, senior citizens, and pregnant women. These are released to general passengers after chart preparation if not claimed.
+
+Q: What is the Emergency Quota?
+A: Emergency Quota (EQ) is controlled by the Divisional Railway Manager (DRM) and is released on the day of journey for genuine emergencies. Passengers must apply in person at the DRM office.
+
+---
+SECTION 7: ONBOARD SERVICES & RULES
+---
+
+Q: Is food included in Rajdhani and Shatabdi ticket fares?
+A: Yes. Meals are included in the fare for Rajdhani Express (dinner, breakfast, and all meals for overnight journeys) and Shatabdi Express (morning snacks/tea and lunch/dinner depending on direction). The e-catering option allows ordering from outside vendors at selected stations.
+
+Q: Can I change my seat or berth after boarding?
+A: Berth changes can be requested from the Train Ticket Examiner (TTE) onboard. The TTE can accommodate swaps if both passengers agree and the TTE approves.
+
+Q: What should I do if my train is running late?
+A: You can check real-time train running status on the NTES (National Train Enquiry System) app/website or by sending an SMS to 139 with the format: SPOT [train number]. You can also call 139 for live updates.
+
+Q: Is smoking allowed on Indian trains?
+A: No. Smoking is strictly prohibited inside all train coaches, including toilets. A fine of up to Rs. 200 can be imposed for violating this rule.
+
+Q: What is the rule for carrying pets on trains?
+A: Pets can be carried in the brake van (luggage van) by booking a "To Pay" ticket at the parcel office. Small pets in closed containers may be allowed in the passenger compartment at the discretion of the TTE.
